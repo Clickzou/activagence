@@ -1,0 +1,31 @@
+{
+  "name": "activagence-toulouse",
+  "version": "2.0.0",
+  "private": true,
+  "description": "Site Activ'Agence — agence de détectives privés à Toulouse. Refonte Next.js.",
+  "scripts": {
+    "dev": "next dev",
+    "prebuild": "node scripts/check-seo.mjs",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "images": "node scripts/optimize-images.mjs",
+    "seo:check": "node scripts/check-seo.mjs",
+    "maillage:check": "node scripts/check-maillage.mjs"
+  },
+  "dependencies": {
+    "next": "16.1.6",
+    "react": "19.2.3",
+    "react-dom": "19.2.3"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.0",
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0",
+    "autoprefixer": "^10.4.20",
+    "postcss": "^8.4.49",
+    "sharp": "^0.34.5",
+    "tailwindcss": "^3.4.17",
+    "typescript": "^5.8.3"
+  }
+}

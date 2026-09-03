@@ -1,0 +1,157 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    color-scheme: light;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+
+  body {
+    @apply bg-white text-nuit antialiased;
+    font-family: var(--font-sans), system-ui, sans-serif;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-display), Georgia, serif;
+    text-wrap: balance;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  :focus-visible {
+    @apply outline-none ring-2 ring-cta ring-offset-2;
+  }
+}
+
+@layer components {
+  /* Lien de contenu : souligne, pour que le maillage interne soit visible et cliquable. */
+  .lien-contenu {
+    @apply font-medium text-marque-600 underline decoration-cta decoration-2 underline-offset-4 transition-colors hover:text-cta-600;
+  }
+
+  /* Bouton principal - couleur client #F9613D en depart de degrade vers le rouge du
+     logo : le blanc sur #F9613D plat ne passe pas le contraste AA a cette taille. */
+  .bouton-primaire {
+    @apply inline-flex items-center justify-center gap-2.5 rounded-full bg-gradient-to-r from-cta to-marque px-7 py-3.5 text-sm font-semibold tracking-wide text-white shadow-carte transition-all hover:shadow-flottant hover:brightness-105 active:translate-y-px;
+  }
+
+  .bouton-secondaire {
+    @apply inline-flex items-center justify-center gap-2.5 rounded-full border border-ardoise-200 bg-white px-7 py-3.5 text-sm font-semibold tracking-wide text-nuit transition-all hover:border-cta hover:text-cta-600;
+  }
+
+  /* Variante sur fond sombre. */
+  .bouton-fantome {
+    @apply inline-flex items-center justify-center gap-2.5 rounded-full border border-white/30 px-7 py-3.5 text-sm font-semibold tracking-wide text-white transition-all hover:border-white hover:bg-white/10;
+  }
+
+  /* Bloc « l'essentiel » : reponse directe extractible par les moteurs generatifs. */
+  .bloc-essentiel {
+    @apply rounded-2xl border border-ardoise-100 bg-gradient-to-br from-ardoise-50 to-white px-7 py-6 text-lg leading-relaxed text-nuit-700 shadow-carte;
+  }
+
+  .carte {
+    @apply rounded-2xl border border-ardoise-100 bg-white shadow-carte transition-shadow hover:shadow-flottant;
+  }
+
+  /* Surtitre de section. */
+  .surtitre {
+    @apply inline-flex items-center gap-2.5 text-xs font-semibold uppercase tracking-[0.18em] text-cta-600;
+  }
+  .surtitre::before {
+    content: "";
+    @apply h-px w-7 bg-cta;
+  }
+}
+
+@layer utilities {
+  /* Transitions d'entree de page.
+
+     Animation CSS pure declenchee au chargement — jamais au scroll : rien n'attend
+     un IntersectionObserver, donc rien ne reste bloque invisible si le JavaScript
+     ne s'execute pas. Duree courte et `backwards` pour que le contenu soit lisible
+     presque immediatement. Neutralisee par prefers-reduced-motion (regle globale).
+
+     A NE PAS appliquer au titre du hero : c'est l'element LCP, l'animer retarde la
+     mesure de performance et la perception de vitesse. */
+  @keyframes entree {
+    from {
+      opacity: 0;
+      transform: translateY(16px);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+
+  .anim-entree {
+    animation: entree 500ms cubic-bezier(0.22, 1, 0.36, 1) backwards;
+  }
+  .anim-delai-1 {
+    animation-delay: 80ms;
+  }
+  .anim-delai-2 {
+    animation-delay: 160ms;
+  }
+  .anim-delai-3 {
+    animation-delay: 240ms;
+  }
+
+  /* Fond anime : deux halos qui derivent lentement. Animation de `transform`
+     uniquement — pas de repaint coûteux — et neutralisee par la regle globale
+     prefers-reduced-motion. */
+  @keyframes derive-a {
+    0%,
+    100% {
+      transform: translate3d(0, 0, 0) scale(1);
+    }
+    50% {
+      transform: translate3d(5rem, -2.5rem, 0) scale(1.12);
+    }
+  }
+  @keyframes derive-b {
+    0%,
+    100% {
+      transform: translate3d(0, 0, 0) scale(1.08);
+    }
+    50% {
+      transform: translate3d(-4rem, 2rem, 0) scale(1);
+    }
+  }
+
+  .anim-derive-a {
+    animation: derive-a 26s ease-in-out infinite;
+  }
+  .anim-derive-b {
+    animation: derive-b 32s ease-in-out infinite;
+  }
+
+  /* Motif de points discret, repris de l'identite du site precedent. */
+  .motif-points {
+    background-image: radial-gradient(currentColor 1px, transparent 1px);
+    background-size: 14px 14px;
+  }
+}
