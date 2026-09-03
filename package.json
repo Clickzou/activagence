@@ -2,6 +2,9 @@
   "name": "activagence-toulouse",
   "version": "2.0.0",
   "private": true,
+  "engines": {
+    "node": ">=20.9.0"
+  },
   "description": "Site Activ'Agence — agence de détectives privés à Toulouse. Refonte Next.js.",
   "scripts": {
     "dev": "next dev",
