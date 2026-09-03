@@ -122,7 +122,13 @@ async function controlerArticles() {
     }
 
     // Comptage approximatif : on additionne le texte de tous les champs de chaines.
-    const mots = [...source.matchAll(/"((?:[^"\\]|\\.){40,})"/g)]
+    //
+    // Les fins de ligne sont normalisees avant comptage. Sans cela, le retour
+    // chariot des fichiers Windows compte comme un caractere de plus et fait
+    // franchir a certaines chaines le seuil de longueur retenu ici : le meme
+    // article passait a 2000 mots en local et echouait a 1996 sur le serveur
+    // de deploiement, ou git restitue des fins de ligne Unix.
+    const mots = [...source.replace(/\r\n/g, "\n").matchAll(/"((?:[^"\\]|\\.){40,})"/g)]
       .map((m) => m[1])
       .join(" ")
       .split(/\s+/)

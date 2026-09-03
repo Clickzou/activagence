@@ -243,6 +243,22 @@ export const article: Article = {
       texte:
         "Enfin, si votre procédure impose une échéance — une audience, un délai de recours —, dites-le nous au premier échange. Nous vous dirons franchement si elle est tenable, plutôt que de l'apprendre en cours de mission.",
     },
+    { type: "titre2", texte: "Le délai que vous maîtrisez : le vôtre" },
+    {
+      type: "paragraphe",
+      texte:
+        "Dans la plupart des dossiers que nous recevons, le temps le plus long n'est pas celui de l'enquête : c'est celui qui s'est écoulé avant l'appel. Des mois d'hésitation chez un particulier, plusieurs semaines de tergiversations dans une entreprise qui espère que la situation se réglera d'elle-même. Ce délai-là ne se rattrape pas, et il coûte cher.",
+    },
+    {
+      type: "paragraphe",
+      texte:
+        "Il coûte cher pour trois raisons concrètes. Les traces matérielles s'effacent : une annonce en ligne disparaît, un local change d'occupant, un véhicule est vendu. Les habitudes changent : la personne observée modifie ses trajets, déménage, prend conscience d'être surveillée. Et surtout, les délais juridiques courent, qu'il s'agisse d'une prescription, d'un délai disciplinaire ou d'une date d'audience déjà fixée.",
+    },
+    {
+      type: "paragraphe",
+      texte:
+        "La conséquence pratique est simple : un premier échange coûte quinze minutes et ne vous engage à rien. Il permet de savoir si une enquête est possible, ce qu'elle établirait, et surtout si le calendrier de votre dossier la rend encore utile. C'est une information que vous obtenez tout de suite, et qui vous évite parfois d'engager des frais pour rien.",
+    },
   ],
   faq: [
     {
